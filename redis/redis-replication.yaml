@@ -14,7 +14,7 @@ spec:
       helm:
         releaseName: redis-replication
         valueFiles:
-          - $values/redis/values.yaml
+        - $values/redis/values_replication.yaml
     - repoURL: https://github.com/maxmax213/deploy_opsptree_redis.git
       targetRevision: main
       ref: values

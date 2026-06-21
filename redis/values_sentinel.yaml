@@ -1,16 +1,3 @@
----
-redisReplication:
-  name: redis-replication
-  clusterSize: 3
-  image: quay.io/opstree/redis
-  tag: v7.0.15
-  imagePullPolicy: IfNotPresent
-  redisSecret:
-    secretName: ""
-    secretKey: ""
-  serviceType: ClusterIP
-  resources: {}
-
 redisSentinel:
   name: redis-sentinel
   clusterSize: 3

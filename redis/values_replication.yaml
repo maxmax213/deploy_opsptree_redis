@@ -1,0 +1,33 @@
+---
+redisReplication:
+  name: redis-replication
+  clusterSize: 3
+  image: quay.io/opstree/redis
+  tag: v7.0.15
+  imagePullPolicy: IfNotPresent
+  redisSecret:
+    secretName: ""
+    secretKey: ""
+  serviceType: ClusterIP
+  resources: {}
+
+externalConfig:
+  enabled: false
+
+externalService:
+  enabled: false
+
+serviceMonitor:
+  enabled: false
+
+redisExporter:
+  enabled: false
+
+podSecurityContext:
+  runAsUser: 1000
+  fsGroup: 1000
+
+pdb:
+  enabled: false
+
+podManagementPolicy: OrderedReady

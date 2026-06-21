@@ -10,7 +10,7 @@ spec:
     targetRevision: main
     path: redis
     directory:
-      exclude: values.yaml
+      exclude: '{values_replication.yaml,values_sentinel.yaml}'
   destination:
     server: https://kubernetes.default.svc
     namespace: infra-services
@@ -18,3 +18,4 @@ spec:
     automated:
       prune: true
       selfHeal: true
+  
