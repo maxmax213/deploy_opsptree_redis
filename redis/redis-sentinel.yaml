@@ -15,8 +15,8 @@ spec:
         releaseName: redis-sentinel
         valueFiles:
           - $values/redis/values.yaml
-    - repoURL: https://gitlab.ac.astralinux.ru/ac-internal/devops/application-services/services.git
-      targetRevision: HEAD
+    - repoURL: https://github.com/maxmax213/deploy_opsptree_redis.git
+      targetRevision: main
       ref: values
   destination:
     server: https://kubernetes.default.svc
