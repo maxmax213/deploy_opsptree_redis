@@ -49,4 +49,4 @@ podSecurityContext:
 pdb:
   enabled: false
 
-podManagementPolicy: OrderedReady
+podManagementPolicy: ""
