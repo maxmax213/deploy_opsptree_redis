@@ -1,0 +1,65 @@
+---
+redisReplication:
+  name: redis-replication
+  clusterSize: 3
+  image: quay.io/opstree/redis
+  tag: v7.0.15
+  imagePullPolicy: IfNotPresent
+  redisSecret:
+    secretName: ""
+    secretKey: ""
+  serviceType: ClusterIP
+  resources: {}
+
+redisSentinel:
+  name: redis-sentinel
+  clusterSize: 3
+  image: quay.io/opstree/redis-sentinel
+  tag: v7.0.15
+  imagePullPolicy: IfNotPresent
+  redisSecret:
+    secretName: ""
+    secretKey: ""
+  serviceType: ClusterIP
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+
+redisSentinelConfig:
+  redisReplicationName: redis-replication
+  redisReplicationPassword:
+    secretName: ""
+    secretKey: ""
+  masterGroupName: myMaster
+  redisPort: "6379"
+  quorum: "2"
+  parallelSyncs: "1"
+  failoverTimeout: "180000"
+  downAfterMilliseconds: "30000"
+  resolveHostnames: "no"
+  announceHostnames: "no"
+
+externalConfig:
+  enabled: false
+
+externalService:
+  enabled: false
+
+serviceMonitor:
+  enabled: false
+
+redisExporter:
+  enabled: false
+
+podSecurityContext:
+  runAsUser: 1000
+  fsGroup: 1000
+
+pdb:
+  enabled: false
+
+podManagementPolicy: OrderedReady

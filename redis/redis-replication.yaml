@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: redis-replication
+  namespace: infra-services
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  project: default
+  sources:
+    - repoURL: https://ot-container-kit.github.io/helm-charts/
+      chart: redis-replication
+      targetRevision: 0.17.0
+      helm:
+        releaseName: redis-replication
+        valueFiles:
+          - $values/redis/values.yaml
+    - repoURL: https://gitlab.ac.astralinux.ru/ac-internal/devops/application-services/services.git
+      targetRevision: HEAD
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ot-operators
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - SkipDryRunOnMissingResource=true
