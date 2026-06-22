@@ -8,8 +8,7 @@
 - `redis-operator/` - Argo CD Application для установки Helm chart `redis-operator`.
 - `redis/` - Argo CD Applications и values для Redis Replication и Redis Sentinel.
 - `test_redis/` - тест Redis через стабильный master Service.
-- 'redis/redis-replication.yaml' - запуск Redis с режимом синхронизации данных с ведущего узла  на один или несколько ведомых узлов
-- 'redis/redis-replication.yaml' - дополнение к режиму реликации обеспечивающие автоматическое переключение при сбое и мониторинг узлов.
+- 'redis/redis-replication.yaml' - запуск Redis с режимом синхронизации данных с ведущего узла  на один или несколько ведомых узлов(+ Sentinel дополнение к режиму реликации обеспечивающие автоматическое переключение при сбое и мониторинг узлов)
 
 Git opstree-operator:
 ```text
