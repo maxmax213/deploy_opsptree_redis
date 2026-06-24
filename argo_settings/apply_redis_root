@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: redis-root
+  namespace: infra-services
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/maxmax213/deploy_opsptree_redis.git
+    targetRevision: standalone
+    path: redis
+    directory:
+      exclude: values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: infra-services
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  
