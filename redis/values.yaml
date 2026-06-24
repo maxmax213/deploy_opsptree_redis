@@ -35,11 +35,9 @@ labels: {}
 #   test: echo
 
 externalConfig:
-  enabled: false
+  enabled: true
   data: |
     tcp-keepalive 400
-    slowlog-max-len 158
-    stream-node-max-bytes 2048
 
 externalService:
   enabled: false
