@@ -5,7 +5,7 @@ redisStandalone:
   tag: v7.0.15
   imagePullPolicy: IfNotPresent
   imagePullSecrets: []
-    # - name:  Secret with Registry credentials
+    # - name: Секрет с учётными данными реестра
   redisSecret:
     secretName: ""
     secretKey: ""
@@ -20,11 +20,11 @@ redisStandalone:
   ignoreAnnotations: []
     # - "redis.opstreelabs.in/ignore"
   minReadySeconds: 0
-  # -- Some fields of statefulset are immutable, such as volumeClaimTemplates.
-  # When set to true, the operator will delete the statefulset and recreate it. Default is false.
+  # -- Некоторые поля StatefulSet неизменяемы, например volumeClaimTemplates.
+  # Если установлено true, оператор удалит StatefulSet и создаст его заново. Значение по умолчанию: false.
   recreateStatefulSetOnUpdateInvalid: false
-  # -- MaxMemoryPercentOfLimit is the percentage of the Redis container memory limit to be used as maxmemory.
-  #    Default is 0 (disabled).
+  # -- Доля лимита памяти контейнера Redis в процентах, используемая как maxmemory.
+  #    Значение по умолчанию: 0 (отключено).
   maxMemoryPercentOfLimit: 0
   persistentVolumeClaimRetentionPolicy: {}
     # whenDeleted: Delete
@@ -51,9 +51,9 @@ serviceMonitor:
   enabled: false
   interval: 30s
   scrapeTimeout: 10s
-  # -- Namespace where servicemonitor resource will be created, if empty it will be created in the same namespace as the redis
+  # -- Namespace для создания ServiceMonitor. Если не указан, используется namespace Redis.
   namespace: ""
-  # -- extraLabels are added to the servicemonitor when enabled set to true
+  # -- Дополнительные метки для ServiceMonitor, когда он включён.
   extraLabels: {}
     # foo: bar
     # team: devops
@@ -164,11 +164,11 @@ TLS:
     secretName: ""
 
 acl:
-  # Configure ACL from Kubernetes Secret
+  # Настройка ACL из Kubernetes Secret
   secret:
     secretName: ""
-  # Configure ACL from PersistentVolumeClaim
-  # The PVC must contain a file named "user.acl" at root level
+  # Настройка ACL из PersistentVolumeClaim
+  # В корне PVC должен находиться файл с именем "user.acl"
   # persistentVolumeClaim: "redis-acl-pvc"
 
 env: []
